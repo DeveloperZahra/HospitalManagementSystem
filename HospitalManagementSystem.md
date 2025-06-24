@@ -18,7 +18,7 @@ An Entity Relationship (ER) Diagram is a type of flowchart that illustrates how 
 
 Convert entities, relationships, and attributes into a working relational schema
 
-![](image/Mapping.png)   
+![](image/Mapping.png)       
 
 **3. Normalization:**
 
@@ -51,3 +51,5 @@ Improve data integrity
 ★ No transitive dependency: This means that each non-key column depends only on the primary key, and not on any other non-key column.
 
 ![](image/Normalization.png)  
+
+------------------------------------------------------
