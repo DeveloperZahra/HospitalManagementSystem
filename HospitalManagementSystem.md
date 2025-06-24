@@ -12,3 +12,7 @@ normalization, and advanced features like views, functions, stored procedures, a
 
 ![](image/ERD.png)  
 
+2. Database Mapping:
+
+![](image/Mapping.png)   
+
