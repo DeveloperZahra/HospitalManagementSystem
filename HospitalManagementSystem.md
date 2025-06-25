@@ -542,6 +542,21 @@ WHERE A.DoctorID = 1;
 ```
 ![](image/visited.png)  
 
+2. Count of appointments per department.
+```sql
+SELECT D.DeptName, COUNT(A.AppointmentID) AS AppointmentCount
+
+FROM DoctorsSchema.Appointments A
+
+JOIN DoctorsSchema.Doctors Doc ON A.DoctorID = Doc.DoctorID
+
+JOIN SystemSchema.Departments D ON Doc.DeptID = D.DeptID
+
+GROUP BY D.DeptName;
+```
+![](image/count.png)  
+ 
+
 
 
 
