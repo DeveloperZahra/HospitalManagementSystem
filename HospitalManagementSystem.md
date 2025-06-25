@@ -640,8 +640,31 @@ HAVING COUNT(A.PatientID) >=1;
 ```
 ![](image/SUBQUERIES&EXISTS.png) 
 
+----------------------------------------------
+✨ <ins>**Functions & Stored Procedures:**</ins>
 
+★ Require: 
 
+1. Scalar function to calculate patient age from DOB.
+
+```sql
+--======Functions & Stored Procedures=====
+--1. Scalar function to calculate patient age from DOB
+
+CREATE FUNCTION dbo.fn_CalculateAge (@DOB DATE)
+RETURNS INT
+AS
+BEGIN
+RETURN DATEDIFF(YEAR, @DOB, GETDATE()) -
+CASE WHEN MONTH(@DOB) > MONTH(GETDATE())
+OR (MONTH(@DOB) = MONTH(GETDATE()) AND DAY(@DOB) > DAY(GETDATE()))
+THEN 1 ELSE 0 END;
+END;
+GO
+
+SELECT dbo.fn_CalculateAge(DOB) AS Age
+FROM PatientsSchema.Patients;
+```
 
 
 
