@@ -556,6 +556,22 @@ GROUP BY D.DeptName;
 ```
 ![](image/count.png)  
  
+ 3. Retrieve doctors who have more than 5 appointments in a month (e.g., June 2025)
+ ```sql
+SELECT Doc.D_FirstName, Doc.D_LastName, COUNT(A.AppointmentID) AS TotalAppointments
+
+FROM DoctorsSchema.Doctors Doc
+
+JOIN DoctorsSchema.Appointments A ON Doc.DoctorID = A.DoctorID
+
+WHERE MONTH(A.AppointmentDate) = 6 AND YEAR(A.AppointmentDate) = 2025
+
+GROUP BY Doc.D_FirstName, Doc.D_LastName
+
+HAVING COUNT(A.AppointmentID) >= 1;
+```
+![](image/Retrieve.png)   
+
 
 
 
