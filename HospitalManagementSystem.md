@@ -53,23 +53,23 @@ Improve data integrity
 ![](image/Normalization.png)  
 
 ------------------------------------------------------
-✨ Tables (DDL):
+✨ <ins>**Tables (DDL):**</ins>
 
 Each table must have appropriate constraints:
 
 ★ PRIMARY KEY, FOREIGN KEY, NOT NULL, UNIQUE, CHECK, DEFAULT
 
-======CREATE THE DATABASE WITH NAME======
+**CREATE THE DATABASE WITH NAME** 
 
             CREATE DATABASE HospitalManagementSystem 
 
-========USE THE DATABASE========
+**USE THE DATABASE** 
 
              USE HospitalManagementSystem 
 
-======DDL (CREATION OF ALL TABLES)======
+**DDL (CREATION OF ALL TABLES)** 
 
-====tO CREATE Patients TABLE====
+**tO CREATE Patients TABLE** 
 
      CREATE TABLE Patients (
     PatientID INT PRIMARY KEY,
@@ -81,7 +81,7 @@ Each table must have appropriate constraints:
     
      );
 
-====TO CREATE DOCTORS TABLE====
+**TO CREATE DOCTORS TABLE**  
 
     CREATE TABLE Doctors (
     DoctorID INT PRIMARY KEY,
@@ -94,14 +94,14 @@ Each table must have appropriate constraints:
     FOREIGN KEY (DeptID) REFERENCES Departments(DeptID)
      );
 
-======TO CREATE DEPARTMENT TABLE======
+**TO CREATE DEPARTMENT TABLE** 
 
     CREATE TABLE Departments (
     DeptID INT PRIMARY KEY,
     DeptName VARCHAR(100) NOT NULL
      );
 
-======TO CREATE Appointments TABLE======
+**TO CREATE Appointments TABLE** 
 
     CREATE TABLE Appointments (
     AppointmentID INT PRIMARY KEY,
@@ -113,7 +113,7 @@ Each table must have appropriate constraints:
     FOREIGN KEY (DoctorID) REFERENCES Doctors(DoctorID)
     );
 
-====TO CREATE Admissions TABLE====
+**TO CREATE Admissions TABLE** 
 
     CREATE TABLE Admissions (
     AdmissionID INT PRIMARY KEY,
@@ -125,7 +125,7 @@ Each table must have appropriate constraints:
     FOREIGN KEY (RoomID) REFERENCES Rooms(RoomID)
     );
 
-======TO CREATE Rooms TABLE======
+**TO CREATE Rooms TABLE** 
 
     CREATE TABLE Rooms (
     RoomID INT PRIMARY KEY,
@@ -133,7 +133,7 @@ Each table must have appropriate constraints:
     Available VARCHAR(5)
     );
 
-======TO CREATE MedicalRecords TABLE======
+**TO CREATE MedicalRecords TABLE** 
 
     CREATE TABLE MedicalRecords (
     RecordID INT PRIMARY KEY,
@@ -147,7 +147,7 @@ Each table must have appropriate constraints:
     FOREIGN KEY (DoctorID) REFERENCES Doctors(DoctorID)
     );
 
-======TO CREATE Users TABLE======
+**TO CREATE Users TABLE** 
 
     CREATE TABLE Users (
     UserID INT PRIMARY KEY,
@@ -159,7 +159,7 @@ Each table must have appropriate constraints:
     FOREIGN KEY (DoctorID) REFERENCES Doctors(DoctorID)
     );
 
- ========TO CREATE Staff TABLE========
+ **TO CREATE Staff TABLE** 
 
     CREATE TABLE Staff (
     StaffID INT PRIMARY KEY,
@@ -171,7 +171,7 @@ Each table must have appropriate constraints:
     FOREIGN KEY (DeptID) REFERENCES Departments(DeptID)
     );
 
-====TO CREATE Billing====
+**TO CREATE Billing** 
 
     CREATE TABLE Billing (
     BillID INT PRIMARY KEY,
@@ -182,15 +182,15 @@ Each table must have appropriate constraints:
     FOREIGN KEY (PatientID) REFERENCES Patients(PatientID)
     );
 
-============CREATE ALTER (UNIQUE, CHECK, DEFAULT) FOR TABALS============
+**CREATE ALTER (UNIQUE, CHECK, DEFAULT) FOR TABALS**
 
-======ALTER  Patients TABLE======
+**ALTER  Patients TABLE**
 
      ALTER TABLE Patients
      ADD CONSTRAINT CHK_Patient_Gender CHECK (Gender IN ('Male', 'Female'));
 
 
-========ALTER DOCTORS TABLES========
+**ALTER DOCTORS TABLES** 
 
     ALTER TABLE Doctors
     ADD CONSTRAINT UQ_Doctor_Email UNIQUE (D_Email);
@@ -198,7 +198,7 @@ Each table must have appropriate constraints:
     ALTER TABLE Doctors
     ADD CONSTRAINT CHK_Doctor_Specialization CHECK (Specialization IS NOT NULL);
 
-========ALTER ROOMS TABLE========
+**ALTER ROOMS TABLE** 
 
     ALTER TABLE Rooms
     ADD CONSTRAINT CHK_Room_Type CHECK (Type IN ('ICU', 'General'))
@@ -207,7 +207,7 @@ Each table must have appropriate constraints:
     ALTER TABLE Rooms
     ADD CONSTRAINT DF_IsAvailable DEFAULT 'Yes' FOR Available;
 
-======ALTER Appointments TABLE======
+**ALTER Appointments TABLE** 
 ```SQL
 ALTER TABLE Appointments
 ADD CONSTRAINT CHK_Appointment_Status CHECK (Status IN ('Confirmed', 'Pending', 'Cancelled'));
@@ -216,7 +216,7 @@ ALTER TABLE Appointments
 ADD CONSTRAINT DF_Appointment_Status DEFAULT 'Pending' FOR Status;
 ```
 
-========ALTER Billing TABLE========
+**ALTER Billing TABLE** 
 
      ALTER TABLE Billing
      ADD CONSTRAINT CHK_Bill_TotalCost CHECK (TotalCost >= 0);
@@ -224,13 +224,12 @@ ADD CONSTRAINT DF_Appointment_Status DEFAULT 'Pending' FOR Status;
      ALTER TABLE Billing
     ADD CONSTRAINT DF_Bill_TotalCost DEFAULT 0.00 FOR TotalCost;
 
-==ALTER Users TABLE==
+**ALTER Users TABLE**
 
     ALTER TABLE Users
     ADD CONSTRAINT UQ_Username UNIQUE (Username);
 
-
-======ALTER Staff TABLE======
+**ALTER Staff TABLE** 
 
     ALTER TABLE Staff
     ADD CONSTRAINT CHK_Staff_Shift CHECK (Shift IN ('Morning', 'Evening', 'Night'));
@@ -241,25 +240,25 @@ ADD CONSTRAINT DF_Appointment_Status DEFAULT 'Pending' FOR Status;
      ALTER TABLE Staff
     ADD CONSTRAINT DF_Staff_Role DEFAULT 'Staff' FOR Role;
 
-======ALTER MedicalRecords TABLE======
+**ALTER MedicalRecords TABLE** 
 
     ALTER TABLE MedicalRecords
     ADD CONSTRAINT CHK_Record_Date CHECK (Date <= GETDATE());
 
 ------------------------------------------------------------------------------------
-✨INSERT Statements Per Table (DML):
+✨<ins>**INSERT Statements Per Table (DML):**</ins> 
 
-====USE THE DATABASE====
+**USE THE DATABASE** 
 
     USE HospitalManagementSystem 
 
      GO
 
-==============DML==============
+   **DML** 
 
-==INSERT Statements Per Table==
+**INSERT Statements Per Table** 
 
-==TO INSERT DATA FOR Departments TABLE==
+**TO INSERT DATA FOR Departments TABLE** 
 ```SQL
     INSERT INTO Departments (DeptID, DeptName) VALUES
     (1, 'Cardiology'), (2, 'Neurology'), (3, 'Orthopedics'), (4, 'Dermatology'), (5, 'Emergency'),
@@ -270,7 +269,7 @@ ADD CONSTRAINT DF_Appointment_Status DEFAULT 'Pending' FOR Status;
 ```
 ![](image/DEPT.png)  
 
-====TO INSERT DATA FOR Doctors THABLE====
+**TO INSERT DATA FOR Doctors THABLE** 
 ```SQL
  INSERT INTO Doctors (DoctorID, D_FirstName, D_LastName, Specialization,   D_PhoneNumber, D_Email, DeptID) VALUES
 (1, 'Ahmed', 'Khalid', 'Cardiology', '900001', 'ahmed1@hms.com', 1),
@@ -297,7 +296,7 @@ ADD CONSTRAINT DF_Appointment_Status DEFAULT 'Pending' FOR Status;
 ```
 ![](image/DOCT.png)  
 
-====TO INSERT DATA FOR  Rooms TABLE====
+**TO INSERT DATA FOR  Rooms TABLE** 
 
 ```SQL
 INSERT INTO Rooms (RoomID, Type, Available) VALUES
@@ -311,7 +310,7 @@ INSERT INTO Rooms (RoomID, Type, Available) VALUES
 ```
 ![](image/ROOM.png)  
 
-====TO INSERT DATA FOR Patients TABLE====
+**TO INSERT DATA FOR Patients TABLE** 
 ```SQL
 INSERT INTO Patients (PatientID, P_FirstName, P_LastName, DOB, Gender, P_PhoneNumber) VALUES
 (1, 'John', 'Doe', '1990-05-22', 'Male', '99998801'),
@@ -338,7 +337,7 @@ INSERT INTO Patients (PatientID, P_FirstName, P_LastName, DOB, Gender, P_PhoneNu
 ```
 ![](image/PATINT.png)  
 
-==TO INSERT DATA FOR Appointments TABLE===
+**TO INSERT DATA FOR Appointments TABLE** 
 
     INSERT INTO Appointments (AppointmentID, PatientID, DoctorID, AppointmentDate, Status) VALUES
     (1, 1, 1, '2025-06-24 09:00:00', 'Confirmed'), (2, 2, 2, '2025-06-24 09:30:00', 'Pending'),
@@ -356,7 +355,7 @@ INSERT INTO Patients (PatientID, P_FirstName, P_LastName, DOB, Gender, P_PhoneNu
 
    ![](image/APPOM.png)  
 
-====TO INSERT DATA FOR Admissions TABLE====
+**TO INSERT DATA FOR Admissions TABLE** 
 
      INSERT INTO Admissions (AdmissionID, PatientID, RoomID, DateIn , DateOut) VALUES
     (1, 1, 1, '2025-06-20', NULL), (2, 2, 2, '2025-06-19', '2025-06-22'),
@@ -373,7 +372,7 @@ INSERT INTO Patients (PatientID, P_FirstName, P_LastName, DOB, Gender, P_PhoneNu
 
 ![](image/ADDMIN.png)  
 
-==TO INSERT DATA FOR MedicalRecords TABLE==
+**TO INSERT DATA FOR MedicalRecords TABLE** 
 
     INSERT INTO MedicalRecords (RecordID, PatientID, Diagnosis,  TreatmentPlan, Date, Notes) VALUES
     (1, 1, 'Hypertension', 'Medication', '2025-06-20', 'Monitor BP daily'),
@@ -400,7 +399,7 @@ INSERT INTO Patients (PatientID, P_FirstName, P_LastName, DOB, Gender, P_PhoneNu
 
 ![](image/MEDREC.png)  
 
-==TO INSERT DATA FOR Billing TABLE==
+**TO INSERT DATA FOR Billing TABLE** 
 
      INSERT INTO Billing (BillID, PatientID, TotalCost , Date, Services) VALUES
      (1, 1, 150.00, '2025-06-20', 'Consultation'),
@@ -427,7 +426,7 @@ INSERT INTO Patients (PatientID, P_FirstName, P_LastName, DOB, Gender, P_PhoneNu
 
 ![](image/BILL.png) 
 
-==TO INSERT DATA FOR Users TABLE==
+**TO INSERT DATA FOR Users TABLE**
 
      INSERT INTO Users (UserID, Username, Password) VALUES
     (1, 'admin1', 'admin123'),
@@ -454,7 +453,7 @@ INSERT INTO Patients (PatientID, P_FirstName, P_LastName, DOB, Gender, P_PhoneNu
 
 ![](image/USER.png)  
 
-==TO INSERT DATA FOR Staff TABLE==
+**TO INSERT DATA FOR Staff TABLE** 
 
     INSERT INTO Staff (StaffID, S_FirstName, S_LastName, Role, Shift, DeptID) VALUES
     (1, 'Aisha', 'Salem', 'Nurse', 'Morning', 1),
@@ -482,7 +481,8 @@ INSERT INTO Patients (PatientID, P_FirstName, P_LastName, DOB, Gender, P_PhoneNu
 ![](image/STAFF.png)  
 
 ------------------------------------
-✨ Relational Schema:
+✨ <ins>**Relational Schema:**</ins> 
+
 ```sql
 --=====USE THE DATABASE=====
 
@@ -514,7 +514,17 @@ CREATE SCHEMA ReceptionistSchema;
 GO
 ALTER SCHEMA ReceptionistSchema TRANSFER Rooms;
 ALTER SCHEMA ReceptionistSchema TRANSFER Admissions;
+
+
+--PatientsSchema
+CREATE SCHEMA PatientsSchema;
+GO
+ALTER SCHEMA PatientsSchema TRANSFER Patients;  
+ALTER SCHEMA PatientsSchema TRANSFER Billing;
+
 ```
+
+
 
 
 
