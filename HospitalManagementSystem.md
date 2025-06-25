@@ -523,10 +523,24 @@ ALTER SCHEMA PatientsSchema TRANSFER Patients;
 ALTER SCHEMA PatientsSchema TRANSFER Billing;
 
 ```
+------------------------------------------------------
 
+✨ <ins>**Queries to Test (DQL):**</ins>  
 
+ ★ Require students to write SQL queries for:
 
+1.  List all patients who visited a certain doctor
 
+ ```sql 
+ SELECT P.P_FirstName, P.P_LastName, A.AppointmentDate
+
+FROM PatientsSchema.Patients P
+
+JOIN DoctorsSchema.Appointments A ON P.PatientID = A.PatientID
+
+WHERE A.DoctorID = 1;
+```
+![](image/visited.png)  
 
 
 
