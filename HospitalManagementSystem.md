@@ -268,6 +268,8 @@ ADD CONSTRAINT DF_Appointment_Status DEFAULT 'Pending' FOR Status;
     (16, 'Pathology'), (17, 'Rheumatology'), (18, 'Pulmonology'), (19, 'Endocrinology'), (20, 'Infectious Diseases'),
     (21, 'Anesthesiology');
 ```
+![](image/DEPT.png)  
+
 ====TO INSERT DATA FOR Doctors THABLE====
 ```SQL
  INSERT INTO Doctors (DoctorID, D_FirstName, D_LastName, Specialization,   D_PhoneNumber, D_Email, DeptID) VALUES
@@ -293,6 +295,8 @@ ADD CONSTRAINT DF_Appointment_Status DEFAULT 'Pending' FOR Status;
 (20, 'Iman', 'Rashid', 'Infectious Diseases', '900020', 'iman20@hms.com', 20),
 (21, 'Bassam', 'Amir', 'Anesthesiology', '900021', 'bassam21@hms.com', 21);
 ```
+![](image/DOCT.png)  
+
 ====TO INSERT DATA FOR  Rooms TABLE====
 
 ```SQL
@@ -305,6 +309,7 @@ INSERT INTO Rooms (RoomID, Type, Available) VALUES
 (16, 'General', 'Yes'), (17,  'ICU', 'Yes'), (18,  'General', 'Yes'),
 (19,  'ICU', 'No'), (20,  'General', 'Yes'), (21,  'General', 'Yes');
 ```
+![](image/ROOM.png)  
 
 ====TO INSERT DATA FOR Patients TABLE====
 ```SQL
@@ -331,7 +336,7 @@ INSERT INTO Patients (PatientID, P_FirstName, P_LastName, DOB, Gender, P_PhoneNu
 (20, 'Hana', 'Majid', '1990-10-26', 'Female', '99998820'),
 (21, 'Ibrahim', 'Adel', '1983-01-09', 'Male', '99998821');
 ```
-
+![](image/PATINT.png)  
 
 ==TO INSERT DATA FOR Appointments TABLE===
 
@@ -348,6 +353,9 @@ INSERT INTO Patients (PatientID, P_FirstName, P_LastName, DOB, Gender, P_PhoneNu
     (19, 19, 19, '2025-06-24 18:00:00', 'Confirmed'), (20, 20, 20, '2025-06-24 18:30:00', 'Pending'),
     (21, 21, 21, '2025-06-24 19:00:00', 'Confirmed');
 
+
+   ![](image/APPOM.png)  
+
 ====TO INSERT DATA FOR Admissions TABLE====
 
      INSERT INTO Admissions (AdmissionID, PatientID, RoomID, DateIn , DateOut) VALUES
@@ -363,6 +371,7 @@ INSERT INTO Patients (PatientID, P_FirstName, P_LastName, DOB, Gender, P_PhoneNu
     (19, 19, 19, '2025-05-31', '2025-06-02'), (20, 20, 20, '2025-05-30', '2025-06-01'),
     (21, 21, 21, '2025-05-29', '2025-05-31');
 
+![](image/ADDMIN.png)  
 
 ==TO INSERT DATA FOR MedicalRecords TABLE==
 
@@ -389,6 +398,8 @@ INSERT INTO Patients (PatientID, P_FirstName, P_LastName, DOB, Gender, P_PhoneNu
     (20, 20, 'COVID-19', 'Isolation', '2025-05-30', 'Negative after 10 days'),
     (21, 21, 'Pre-surgery check', 'Blood tests', '2025-05-29', 'Ready for OR');
 
+![](image/MEDREC.png)  
+
 ==TO INSERT DATA FOR Billing TABLE==
 
      INSERT INTO Billing (BillID, PatientID, TotalCost , Date, Services) VALUES
@@ -413,6 +424,8 @@ INSERT INTO Patients (PatientID, P_FirstName, P_LastName, DOB, Gender, P_PhoneNu
     (19, 19, 210.00, '2025-05-31', 'Endocrinology'),
     (20, 20, 500.00, '2025-05-30', 'COVID-19 test & isolation'),
     (21, 21, 350.00, '2025-05-29', 'Pre-surgery tests'); 
+
+![](image/BILL.png) 
 
 ==TO INSERT DATA FOR Users TABLE==
 
@@ -439,6 +452,7 @@ INSERT INTO Patients (PatientID, P_FirstName, P_LastName, DOB, Gender, P_PhoneNu
     (20, 'reception4', 'recept321'),
     (21, 'systemadmin', 'sysadmin');
 
+![](image/USER.png)  
 
 ==TO INSERT DATA FOR Staff TABLE==
 
@@ -464,6 +478,8 @@ INSERT INTO Patients (PatientID, P_FirstName, P_LastName, DOB, Gender, P_PhoneNu
     (19, 'Dina', 'Hesham', 'Nurse', 'Morning', 19),
     (20, 'Ibrahim', 'Amin', 'Admin', 'Evening', 20),
     (21, 'Waleed', 'Shaker', 'Security', 'Night', 21); 
+
+![](image/STAFF.png)  
 
 
 
