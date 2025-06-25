@@ -602,6 +602,22 @@ HAVING COUNT(Doc.DoctorID) >= 1;
 ![](image/Having&group.png)    
 
 
+6. Use SUBQUERIES and EXISTS 
+
+★ select all doctors who treat 1  patients
+
+```sql 
+SELECT Doc.DoctorID as 'Doctor ID', Doc.D_FirstName, Doc.D_LastName AS 'Doctor Name' 
+
+FROM DoctorsSchema.Doctors Doc INNER JOIN DoctorsSchema.Appointments A ON Doc.DoctorID = A.DoctorID
+WHERE EXISTS (
+SELECT Doc.DoctorID  
+FROM DoctorsSchema.Doctors Doc
+)
+GROUP BY  Doc.DoctorID, Doc.D_FirstName,Doc.D_LastName
+HAVING COUNT(A.PatientID) >=1;
+```
+![](image/SUBQUERIES&EXISTS.png) 
 
 
 
