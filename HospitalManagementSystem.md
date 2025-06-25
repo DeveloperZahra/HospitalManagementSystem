@@ -711,6 +711,48 @@ SELECT * FROM PatientsSchema.Billing WHERE PatientID = 1;
 ```
 ![](image/generate.png)   
 
+4. Procedure to assign doctor to department and shift.
+```sql
+CREATE PROCEDURE sp_AssignDoctorToDept
+
+@D_FirstName VARCHAR(50),
+@D_LastName VARCHAR(50),
+@DeptID INT,
+@Shift VARCHAR(20),
+@StaffID int
+AS
+BEGIN
+--DECLARE @StaffID INT;
+
+--SELECT @StaffID = StaffID
+--FROM SystemSchema.Staff
+--WHERE S_FirstName = @D_FirstName AND S_LastName = @D_LastName AND Role = 'Doctor';
+
+IF @StaffID IS NOT NULL
+BEGIN
+    UPDATE SystemSchema.Staff
+    SET DeptID = @DeptID,
+        Shift = @Shift
+    WHERE StaffID = @StaffID;
+END;
+
+END;
+GO
+
+
+exec sp_AssignDoctorToDept
+@D_FirstName = 'Aisha',
+@D_LastName = 'Salem',
+@DeptID  = 1,
+@Shift = 'Night',
+@StaffID = 1
+
+--drop procedure sp_AssignDoctorToDept
+
+
+SELECT * FROM SystemSchema.Staff
+```
+![](image/assign.png)
 
 
 
