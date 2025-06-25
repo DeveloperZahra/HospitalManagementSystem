@@ -665,6 +665,33 @@ GO
 SELECT dbo.fn_CalculateAge(DOB) AS Age
 FROM PatientsSchema.Patients;
 ```
+![](image/Function.png) 
+
+2. Stored procedure to admit a patient (insert to Admissions, update Room availability).
+```sql 
+
+CREATE PROCEDURE sp_AdmitPatient (
+@PatientID INT,
+@RoomID INT,
+@DateIn DATE,
+@DateOut DATE)
+AS
+BEGIN
+INSERT INTO ReceptionistSchema.Admissions (PatientID, RoomID, DateIn,DateOut)
+VALUES (@PatientID, @RoomID, @DateIn,@DateOut)
+
+UPDATE ReceptionistSchema.Rooms
+SET Available = 'No'
+WHERE RoomID = @RoomID;
+
+END;
+GO
+
+SELECT * FROM ReceptionistSchema.Rooms WHERE RoomID = 1;
+SELECT * FROM ReceptionistSchema.Admissions WHERE PatientID = 1;
+```
+![](image/StoredProcedure.png)  
+
 
 
 
