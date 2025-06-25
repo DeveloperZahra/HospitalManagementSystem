@@ -16,6 +16,8 @@ INSERT INTO Departments (DeptID, DeptName) VALUES
 (16, 'Pathology'), (17, 'Rheumatology'), (18, 'Pulmonology'), (19, 'Endocrinology'), (20, 'Infectious Diseases'),
 (21, 'Anesthesiology');
 
+SELECT * FROM Departments
+
 --=====TO INSERT DATA FOR Doctors THABLE=====
 
 INSERT INTO Doctors (DoctorID, D_FirstName, D_LastName, Specialization,   D_PhoneNumber, D_Email, DeptID) VALUES
@@ -41,6 +43,8 @@ INSERT INTO Doctors (DoctorID, D_FirstName, D_LastName, Specialization,   D_Phon
 (20, 'Iman', 'Rashid', 'Infectious Diseases', '900020', 'iman20@hms.com', 20),
 (21, 'Bassam', 'Amir', 'Anesthesiology', '900021', 'bassam21@hms.com', 21);
 
+SELECT * FROM Doctors
+
 --====TO INSERT DATA FOR  Rooms TABLE=======
 
 INSERT INTO Rooms (RoomID, Type, Available) VALUES
@@ -52,6 +56,7 @@ INSERT INTO Rooms (RoomID, Type, Available) VALUES
 (16, 'General', 'Yes'), (17,  'ICU', 'Yes'), (18,  'General', 'Yes'),
 (19,  'ICU', 'No'), (20,  'General', 'Yes'), (21,  'General', 'Yes');
 
+SELECT * FROM Rooms
 
 --=====TO INSERT DATA FOR Patients TABLE======
 
@@ -78,7 +83,7 @@ INSERT INTO Patients (PatientID, P_FirstName, P_LastName, DOB, Gender, P_PhoneNu
 (20, 'Hana', 'Majid', '1990-10-26', 'Female', '99998820'),
 (21, 'Ibrahim', 'Adel', '1983-01-09', 'Male', '99998821');
 
-
+SELECT * FROM Patients
 
 --====TO INSERT DATA FOR Appointments TABLE===== 
 
@@ -95,6 +100,8 @@ INSERT INTO Appointments (AppointmentID, PatientID, DoctorID, AppointmentDate, S
 (19, 19, 19, '2025-06-24 18:00:00', 'Confirmed'), (20, 20, 20, '2025-06-24 18:30:00', 'Pending'),
 (21, 21, 21, '2025-06-24 19:00:00', 'Confirmed');
 
+SELECT * FROM Appointments
+
 --====TO INSERT DATA FOR Admissions TABLE=====
 
 INSERT INTO Admissions (AdmissionID, PatientID, RoomID, DateIn , DateOut) VALUES
@@ -110,11 +117,11 @@ INSERT INTO Admissions (AdmissionID, PatientID, RoomID, DateIn , DateOut) VALUES
 (19, 19, 19, '2025-05-31', '2025-06-02'), (20, 20, 20, '2025-05-30', '2025-06-01'),
 (21, 21, 21, '2025-05-29', '2025-05-31');
 
-
+SELECT * FROM Admissions
 --===TO INSERT DATA FOR MedicalRecords TABLE===
 
-INSERT INTO MedicalRecords (RecordID, PatientID, Diagnosis,  TreatmentPlan, Date, Notes) VALUES
-(1, 1, 'Hypertension', 'Medication', '2025-06-20', 'Monitor BP daily'),
+INSERT INTO MedicalRecords (RecordID, PatientID,  Diagnosis,  TreatmentPlan, Date, Notes) VALUES
+(1, 1,  'Hypertension', 'Medication', '2025-06-20', 'Monitor BP daily'),
 (2, 2, 'Diabetes', 'Insulin therapy', '2025-06-19', 'Follow diet plan'),
 (3, 3, 'Fracture', 'Cast', '2025-06-18', 'Recheck in 6 weeks'),
 (4, 4, 'Migraine', 'Painkillers', '2025-06-21', 'Reduce screen time'),
@@ -123,18 +130,21 @@ INSERT INTO MedicalRecords (RecordID, PatientID, Diagnosis,  TreatmentPlan, Date
 (7, 7, 'Skin allergy', 'Antihistamines', '2025-06-12', 'Topical ointment'),
 (8, 8, 'Cancer screening', 'Lab tests', '2025-06-11', 'Follow-up next week'),
 (9, 9, 'Anxiety', 'Therapy', '2025-06-10', 'Weekly sessions'),
-(10, 10, 'Kidney stones', 'Medication', '2025-06-09', 'Ultrasound needed'),
-(11, 11, 'Ear infection', 'Antibiotics', '2025-06-08', 'Pain reported'),
-(12, 12, 'Ulcer', 'Antacids', '2025-06-07', 'No spicy food'),
-(13, 13, 'Kidney failure', 'Dialysis', '2025-06-06', 'Check creatinine'),
-(14, 14, 'Eye pain', 'Eye drops', '2025-06-05', 'Reduce screen exposure'),
-(15, 15, 'Appendicitis', 'Surgery', '2025-06-04', 'Successful operation'),
-(16, 16, 'Anemia', 'Iron supplements', '2025-06-03', 'Follow iron diet'),
-(17, 17, 'Arthritis', 'Pain management', '2025-06-02', 'Regular exercise'),
-(18, 18, 'Bronchitis', 'Antibiotics', '2025-06-01', 'Chest X-ray needed'),
-(19, 19, 'Thyroid disorder', 'Hormone therapy', '2025-05-31', 'Follow dosage'),
-(20, 20, 'COVID-19', 'Isolation', '2025-05-30', 'Negative after 10 days'),
-(21, 21, 'Pre-surgery check', 'Blood tests', '2025-05-29', 'Ready for OR');
+(10, 10,  'Kidney stones', 'Medication', '2025-06-09', 'Ultrasound needed'),
+(11, 11,  'Ear infection', 'Antibiotics', '2025-06-08', 'Pain reported'),
+(12, 12,  'Ulcer', 'Antacids', '2025-06-07', 'No spicy food'),
+(13, 13,  'Kidney failure', 'Dialysis', '2025-06-06', 'Check creatinine'),
+(14, 14,  'Eye pain', 'Eye drops', '2025-06-05', 'Reduce screen exposure'),
+(15, 15,  'Appendicitis', 'Surgery', '2025-06-04', 'Successful operation'),
+(16, 16,   'Anemia', 'Iron supplements', '2025-06-03', 'Follow iron diet'),
+(17, 17,   'Arthritis', 'Pain management', '2025-06-02', 'Regular exercise'),
+(18, 18,  'Bronchitis', 'Antibiotics', '2025-06-01', 'Chest X-ray needed'),
+(19, 19,  'Thyroid disorder', 'Hormone therapy', '2025-05-31', 'Follow dosage'),
+(20, 20,  'COVID-19', 'Isolation', '2025-05-30', 'Negative after 10 days'),
+(21, 21,  'Pre-surgery check', 'Blood tests', '2025-05-29', 'Ready for OR');
+
+SELECT * FROM MedicalRecords
+
 
 --===TO INSERT DATA FOR Billing TABLE===
 
@@ -161,6 +171,7 @@ INSERT INTO Billing (BillID, PatientID, TotalCost , Date, Services) VALUES
 (20, 20, 500.00, '2025-05-30', 'COVID-19 test & isolation'),
 (21, 21, 350.00, '2025-05-29', 'Pre-surgery tests'); 
 
+SELECT * FROM Billing
 --===TO INSERT DATA FOR Users TABLE==== 
 
 INSERT INTO Users (UserID, Username, Password) VALUES
@@ -186,7 +197,7 @@ INSERT INTO Users (UserID, Username, Password) VALUES
 (20, 'reception4', 'recept321'),
 (21, 'systemadmin', 'sysadmin');
 
-
+SELECT * FROM Users
 --===TO INSERT DATA FOR Staff TABLE======
 
 INSERT INTO Staff (StaffID, S_FirstName, S_LastName, Role, Shift, DeptID) VALUES
@@ -212,7 +223,7 @@ INSERT INTO Staff (StaffID, S_FirstName, S_LastName, Role, Shift, DeptID) VALUES
 (20, 'Ibrahim', 'Amin', 'Admin', 'Evening', 20),
 (21, 'Waleed', 'Shaker', 'Security', 'Night', 21); 
 
-
+SELECT * FROM Staff 
 
 
 

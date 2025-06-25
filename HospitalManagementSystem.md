@@ -266,6 +266,8 @@ ADD CONSTRAINT DF_Appointment_Status DEFAULT 'Pending' FOR Status;
     (11, 'ENT'), (12, 'Gastroenterology'), (13, 'Nephrology'), (14, 'Ophthalmology'), (15, 'General Surgery'),
     (16, 'Pathology'), (17, 'Rheumatology'), (18, 'Pulmonology'), (19, 'Endocrinology'), (20, 'Infectious Diseases'),
     (21, 'Anesthesiology');
+
+    SELECT * FROM Departments
 ```
 ![](image/DEPT.png)  
 
@@ -293,6 +295,8 @@ ADD CONSTRAINT DF_Appointment_Status DEFAULT 'Pending' FOR Status;
 (19, 'Khaled', 'Zaki', 'Endocrinology', '900019', 'khaled19@hms.com', 19),
 (20, 'Iman', 'Rashid', 'Infectious Diseases', '900020', 'iman20@hms.com', 20),
 (21, 'Bassam', 'Amir', 'Anesthesiology', '900021', 'bassam21@hms.com', 21);
+
+SELECT * FROM Doctors
 ```
 ![](image/DOCT.png)  
 
@@ -307,6 +311,8 @@ INSERT INTO Rooms (RoomID, Type, Available) VALUES
 (13,  'ICU', 'No'), (14,  'General', 'Yes'), (15, 'ICU', 'No'),
 (16, 'General', 'Yes'), (17,  'ICU', 'Yes'), (18,  'General', 'Yes'),
 (19,  'ICU', 'No'), (20,  'General', 'Yes'), (21,  'General', 'Yes');
+
+SELECT * FROM Rooms
 ```
 ![](image/ROOM.png)  
 
@@ -334,7 +340,11 @@ INSERT INTO Patients (PatientID, P_FirstName, P_LastName, DOB, Gender, P_PhoneNu
 (19, 'Nader', 'Zain', '1981-01-02', 'Male', '99998819'),
 (20, 'Hana', 'Majid', '1990-10-26', 'Female', '99998820'),
 (21, 'Ibrahim', 'Adel', '1983-01-09', 'Male', '99998821');
+
+SELECT * FROM Patients
 ```
+
+
 ![](image/PATINT.png)  
 
 **TO INSERT DATA FOR Appointments TABLE** 
@@ -352,6 +362,7 @@ INSERT INTO Patients (PatientID, P_FirstName, P_LastName, DOB, Gender, P_PhoneNu
     (19, 19, 19, '2025-06-24 18:00:00', 'Confirmed'), (20, 20, 20, '2025-06-24 18:30:00', 'Pending'),
     (21, 21, 21, '2025-06-24 19:00:00', 'Confirmed');
 
+    SELECT * FROM Appointments
 
    ![](image/APPOM.png)  
 
@@ -369,6 +380,8 @@ INSERT INTO Patients (PatientID, P_FirstName, P_LastName, DOB, Gender, P_PhoneNu
     (17, 17, 17, '2025-06-02', '2025-06-04'), (18, 18, 18, '2025-06-01', '2025-06-03'),
     (19, 19, 19, '2025-05-31', '2025-06-02'), (20, 20, 20, '2025-05-30', '2025-06-01'),
     (21, 21, 21, '2025-05-29', '2025-05-31');
+
+    SELECT * FROM Admissions
 
 ![](image/ADDMIN.png)  
 
@@ -397,6 +410,8 @@ INSERT INTO Patients (PatientID, P_FirstName, P_LastName, DOB, Gender, P_PhoneNu
     (20, 20, 'COVID-19', 'Isolation', '2025-05-30', 'Negative after 10 days'),
     (21, 21, 'Pre-surgery check', 'Blood tests', '2025-05-29', 'Ready for OR');
 
+    SELECT * FROM MedicalRecords
+
 ![](image/MEDREC.png)  
 
 **TO INSERT DATA FOR Billing TABLE** 
@@ -423,6 +438,8 @@ INSERT INTO Patients (PatientID, P_FirstName, P_LastName, DOB, Gender, P_PhoneNu
     (19, 19, 210.00, '2025-05-31', 'Endocrinology'),
     (20, 20, 500.00, '2025-05-30', 'COVID-19 test & isolation'),
     (21, 21, 350.00, '2025-05-29', 'Pre-surgery tests'); 
+
+    SELECT * FROM Billing
 
 ![](image/BILL.png) 
 
@@ -451,6 +468,8 @@ INSERT INTO Patients (PatientID, P_FirstName, P_LastName, DOB, Gender, P_PhoneNu
     (20, 'reception4', 'recept321'),
     (21, 'systemadmin', 'sysadmin');
 
+    SELECT * FROM Users
+
 ![](image/USER.png)  
 
 **TO INSERT DATA FOR Staff TABLE** 
@@ -477,6 +496,8 @@ INSERT INTO Patients (PatientID, P_FirstName, P_LastName, DOB, Gender, P_PhoneNu
     (19, 'Dina', 'Hesham', 'Nurse', 'Morning', 19),
     (20, 'Ibrahim', 'Amin', 'Admin', 'Evening', 20),
     (21, 'Waleed', 'Shaker', 'Security', 'Night', 21); 
+
+    SELECT * FROM Staff
 
 ![](image/STAFF.png)  
 
@@ -618,6 +639,10 @@ GROUP BY  Doc.DoctorID, Doc.D_FirstName,Doc.D_LastName
 HAVING COUNT(A.PatientID) >=1;
 ```
 ![](image/SUBQUERIES&EXISTS.png) 
+
+
+
+
 
 
 
