@@ -573,7 +573,7 @@ HAVING COUNT(A.AppointmentID) >= 1;
 ![](image/Retrieve.png)   
 
 
--- 4. Use JOINs across 3–4 tables
+ 4. Use JOINs across 3–4 tables
 ```sql 
 SELECT P.P_FirstName AS PatientFirst, Doc.D_FirstName AS DoctorFirst, Dept.DeptName, A.AppointmentDate
 
@@ -586,6 +586,21 @@ JOIN DoctorsSchema.Doctors Doc ON A.DoctorID = Doc.DoctorID
 JOIN SystemSchema.Departments Dept ON Doc.DeptID = Dept.DeptID;
 ```
 ![](image/JOIN.png)   
+
+5. Use GROUP BY, HAVING, and aggregate functions
+```sql
+SELECT D.DeptName, COUNT(Doc.DoctorID) AS TotalDoctors
+
+FROM SystemSchema.Departments D
+
+JOIN DoctorsSchema.Doctors Doc ON D.DeptID = Doc.DeptID
+
+GROUP BY D.DeptName
+
+HAVING COUNT(Doc.DoctorID) >= 1;
+```
+![](image/Having&group.png)    
+
 
 
 
