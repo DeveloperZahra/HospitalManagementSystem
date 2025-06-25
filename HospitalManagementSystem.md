@@ -692,6 +692,25 @@ SELECT * FROM ReceptionistSchema.Admissions WHERE PatientID = 1;
 ```
 ![](image/StoredProcedure.png)  
 
+3. Procedure to generate invoice based on treatment
+
+```sql
+CREATE PROCEDURE sp_GenerateInvoice
+@PatientID INT,
+@Service VARCHAR(200),
+@TotalCost DECIMAL(10,2),
+@Date DATE
+AS
+BEGIN
+INSERT INTO PatientsSchema.Billing (PatientID, Services, TotalCost, Date)
+VALUES (@PatientID, @Service, @TotalCost, @Date);
+END;
+GO
+
+SELECT * FROM PatientsSchema.Billing WHERE PatientID = 1;
+```
+![](image/generate.png)   
+
 
 
 
