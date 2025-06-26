@@ -1162,3 +1162,28 @@ CREATE TABLE DoctorsSchema.DoctorDailyScheduleLog (
     LoggedAt DATETIME DEFAULT GETDATE()
 );
 ```
+❖ Step 2: Create the Stored Procedure
+
+```sql
+CREATE PROCEDURE DoctorsSchema.usp_LogDoctorDailySchedule
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO DoctorsSchema.DoctorDailyScheduleLog (
+        DoctorID,
+        DoctorName,
+        PatientName,
+        AppointmentDate
+    )
+    SELECT 
+        D.DoctorID,
+        D.D_FirstName + ' ' + D.D_LastName AS DoctorName,
+        P.P_FirstName + ' ' + P.P_LastName AS PatientName,
+        A.AppointmentDate
+    FROM DoctorsSchema.Doctors D
+    JOIN DoctorsSchema.Appointments A ON D.DoctorID = A.DoctorID
+    JOIN PatientsSchema.Patients P ON A.PatientID = P.PatientID
+    WHERE CAST(A.AppointmentDate AS DATE) = CAST(GETDATE() AS DATE); -- Today's appointments only
+END;
+```
