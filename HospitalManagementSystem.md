@@ -1032,3 +1032,109 @@ GROUP BY D.DeptID, DeptName;
 SELECT * FROM vw_DepartmentStats;
 ```
 ![](image/vw_DepartmentStats.png) 
+
+---------------------------------------
+# Additional Requirement: SQL Server Job (SQL Agent Job)
+
+ ✨ <ins>**Objective:**</ins> 
+
+Create and schedule an SQL Job using SQL Server Agent that performs automatic, recurring tasks related to the
+Hospital System database.
+
+ ✨ <ins>**SQL Job Requirements:**</ins> 
+
+Students must create at least one SQL Job that does the following:
+
+★ Option 1: Daily Backup Job
+
+1• Job Name: Daily_HospitalDB_Backup
+
+2• Schedule: Every day at 2:00 AM
+
+3• Action: Database backup
+
+★ Step 1: Start SQL Server Agent
+
+ ❖ right ckick on SQL Server Agent and select "Start" to ensure the agent is running.
+
+ ![](image/SqlJobStep1.png) 
+
+ ★ Step 2: Create a new job
+
+❖ Right click on SQL Server Agent > New > Jop > the New Jop woindow will open
+
+![](image/SqlJobStep2.png)
+
+❖ in the General Page:
+
+❖ Name: Daily_HospitalDB_Backup
+
+❖ Description (Optional): Daily backup for the HospitalManagementSystem database.
+
+![](image/SqlJobStep3.png)
+
+★ Step 3: Add a Backup Step
+
+❖ Click on Steps on the left > Click New…
+
+![](image/SqlJobStep4.png)
+
+❖ In the New Job Step:
+
+❖ Step Name: Backup_HospitalDB
+
+❖ Type: Transact-SQL script (T-SQL)
+
+❖ Database: master
+
+❖ we use master not our db becouse we need to control this out side the db
+
+❖ Command:
+
+    BACKUP DATABASE HospitalManagementSystem
+    TO DISK = 'C:\Backup\HospitalManagementSystem_Daily.bak'
+    WITH INIT, FORMAT, STATS = 10;
+
+❖ Click OK to save the step.
+
+![](image/SqlJobStep5.png)
+
+
+★ Step 4: Set the Schedule
+
+❖ Click on Schedules > Click New…
+
+![](image/SqlJobStep6.png)
+
+❖ In the New Job Schedule:
+
+❖ Name: Daily_2AM
+
+❖ Schedule Type: Recurring
+
+❖ Frequency: Daily
+
+❖ Recurs every: 1 day
+
+❖ Daily Frequency: Occurs once at 2:00:00 AM
+
+❖ Click OK to save the schedule.
+
+![](image/SqlJobStep7.png)
+
+★ Step 5: Finalize
+
+❖ Click OK to create the job.
+
+![](image/SqlJobStep8.png)
+
+★ Step 6: Verify
+
+❖ In SQL Server Agent → Jobs, you will now see Daily_HospitalDB_Backup.
+
+![](image/SqlJobStep9.png)
+
+
+❖ You can right-click the job and select Start Job at Step… to manually test it.
+
+![](image/SqlJobStep10.png)
