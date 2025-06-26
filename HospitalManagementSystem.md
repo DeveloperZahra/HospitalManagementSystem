@@ -837,12 +837,40 @@ WHERE PatientID = 999;
 
 
 
-
-
-
-
-
 3. After update on Rooms → ensure no two patients occupy same room.
 
 
 
+
+
+
+
+
+
+
+----------------------------------------------------
+✨ <ins>**Security (DCL):**</ins>
+
+1• Create at least two user roles: DoctorUser, AdminUser.
+
+```sql 
+
+CREATE ROLE DoctorUser;
+CREATE ROLE AdminUser;
+
+```
+
+
+
+
+
+
+
+2• GRANT SELECT for DoctorUser on Patients and Appointments only.
+
+
+
+3• GRANT INSERT, UPDATE for AdminUser on all tables.
+
+
+4• REVOKE DELETE for Doctors.
