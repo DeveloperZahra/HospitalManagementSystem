@@ -348,7 +348,7 @@ SELECT * FROM Patients
 ![](image/PATINT.png)  
 
 **TO INSERT DATA FOR Appointments TABLE** 
-
+```sql 
     INSERT INTO Appointments (AppointmentID, PatientID, DoctorID, AppointmentDate, Status) VALUES
     (1, 1, 1, '2025-06-24 09:00:00', 'Confirmed'), (2, 2, 2, '2025-06-24 09:30:00', 'Pending'),
     (3, 3, 3, '2025-06-24 10:00:00', 'Confirmed'), (4, 4, 4, '2025-06-24 10:30:00', 'Cancelled'),
@@ -363,11 +363,11 @@ SELECT * FROM Patients
     (21, 21, 21, '2025-06-24 19:00:00', 'Confirmed');
 
     SELECT * FROM Appointments
-
+```
    ![](image/APPOM.png)  
 
 **TO INSERT DATA FOR Admissions TABLE** 
-
+```sql 
      INSERT INTO Admissions (AdmissionID, PatientID, RoomID, DateIn , DateOut) VALUES
     (1, 1, 1, '2025-06-20', NULL), (2, 2, 2, '2025-06-19', '2025-06-22'),
     (3, 3, 3, '2025-06-18', '2025-06-20'), (4, 4, 4, '2025-06-21', NULL),
@@ -382,11 +382,11 @@ SELECT * FROM Patients
     (21, 21, 21, '2025-05-29', '2025-05-31');
 
     SELECT * FROM Admissions
-
+```
 ![](image/ADDMIN.png)  
 
 **TO INSERT DATA FOR MedicalRecords TABLE** 
-
+```sql
     INSERT INTO MedicalRecords (RecordID, PatientID, Diagnosis,  TreatmentPlan, Date, Notes) VALUES
     (1, 1, 'Hypertension', 'Medication', '2025-06-20', 'Monitor BP daily'),
     (2, 2, 'Diabetes', 'Insulin therapy', '2025-06-19', 'Follow diet plan'),
@@ -411,11 +411,11 @@ SELECT * FROM Patients
     (21, 21, 'Pre-surgery check', 'Blood tests', '2025-05-29', 'Ready for OR');
 
     SELECT * FROM MedicalRecords
-
+```
 ![](image/MEDREC.png)  
 
 **TO INSERT DATA FOR Billing TABLE** 
-
+```sql
      INSERT INTO Billing (BillID, PatientID, TotalCost , Date, Services) VALUES
      (1, 1, 150.00, '2025-06-20', 'Consultation'),
      (2, 2, 320.00, '2025-06-19', 'Lab tests'),
@@ -440,11 +440,11 @@ SELECT * FROM Patients
     (21, 21, 350.00, '2025-05-29', 'Pre-surgery tests'); 
 
     SELECT * FROM Billing
-
+```
 ![](image/BILL.png) 
 
 **TO INSERT DATA FOR Users TABLE**
-
+```sql
      INSERT INTO Users (UserID, Username, Password) VALUES
     (1, 'admin1', 'admin123'),
     (2, 'doctor1', 'pass123'),
@@ -469,11 +469,11 @@ SELECT * FROM Patients
     (21, 'systemadmin', 'sysadmin');
 
     SELECT * FROM Users
-
+```
 ![](image/USER.png)  
 
 **TO INSERT DATA FOR Staff TABLE** 
-
+```sql
     INSERT INTO Staff (StaffID, S_FirstName, S_LastName, Role, Shift, DeptID) VALUES
     (1, 'Aisha', 'Salem', 'Nurse', 'Morning', 1),
     (2, 'Hassan', 'Ali', 'Admin', 'Evening', 2),
@@ -498,6 +498,7 @@ SELECT * FROM Patients
     (21, 'Waleed', 'Shaker', 'Security', 'Night', 21); 
 
     SELECT * FROM Staff
+```
 
 ![](image/STAFF.png)  
 
@@ -754,7 +755,52 @@ SELECT * FROM SystemSchema.Staff
 ```
 ![](image/assign.png)
 
+-------------------------------------------------------------
+✨ <ins>**Triggers:**</ins>
 
+★ Implement:
+
+1. After insert on Appointments → auto log in MedicalRecords.
+```sql
+CREATE TRIGGER trg_AfterInsertAppointment
+ON DoctorsSchema.Appointments
+AFTER INSERT
+AS
+BEGIN
+INSERT INTO DoctorsSchema.MedicalRecords (PatientID, Diagnosis, TreatmentPlan, Date, Notes)
+SELECT PatientID, 'To be diagnosed', 'To be decided', GETDATE(), 'Auto-generated after appointment'
+FROM inserted;
+END;
+GO
+
+SELECT * FROM DoctorsSchema.MedicalRecords
+WHERE PatientID = 1
+ORDER BY Date DESC;
+```
+![](image/TriggerQ1.png)
+
+
+
+
+
+
+
+
+2. Before delete on Patients → prevent deletion if pending bills exist.
+
+
+
+
+
+
+
+
+
+
+
+
+
+3. After update on Rooms → ensure no two patients occupy same room.
 
 
 
