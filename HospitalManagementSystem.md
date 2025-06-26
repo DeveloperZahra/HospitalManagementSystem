@@ -1138,3 +1138,27 @@ Students must create at least one SQL Job that does the following:
 ❖ You can right-click the job and select Start Job at Step… to manually test it.
 
 ![](image/SqlJobStep10.png)
+
+★ Option 2: Doctor Schedule Report 
+
+1• Job Name: Doctor_Daily_Schedule_Report
+
+2• Schedule: Every morning at 7:00 AM 
+
+3• Action:
+
+❖ A stored procedure that extracts the daily doctor schedule from Appointments and inserts it into a
+report table DoctorDailyScheduleLog.
+
+❖ Step 1: Create the Report Table
+
+```sql
+CREATE TABLE DoctorsSchema.DoctorDailyScheduleLog (
+    LogID INT IDENTITY(1,1) PRIMARY KEY,
+    DoctorID INT,
+    DoctorName VARCHAR(200),
+    PatientName VARCHAR(200),
+    AppointmentDate DATETIME,
+    LoggedAt DATETIME DEFAULT GETDATE()
+);
+```
