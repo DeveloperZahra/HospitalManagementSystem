@@ -838,14 +838,36 @@ WHERE PatientID = 999;
 
 
 3. After update on Rooms → ensure no two patients occupy same room.
+```sql
+CREATE TRIGGER trg_CheckRoomOccupancy4
+ON ReceptionistSchema.Admissions
+AFTER  UPDATE
+AS
+BEGIN
+IF EXISTS (
+SELECT RoomID
+FROM ReceptionistSchema.Rooms
+WHERE Available= 'No' 
+GROUP BY RoomID
+--HAVING COUNT(*) > 1
+)
+BEGIN 
+RAISERROR ('A room cannot be assigned to more than one patient at a time.', 16, 1);
+ROLLBACK TRANSACTION ;
+END
+END;
 
 
+UPDATE ReceptionistSchema.Admissions
+SET RoomID = 8
+WHERE PatientID = 1;
+
+select * from  ReceptionistSchema.Rooms
+select * from ReceptionistSchema.Admissions
+```
 
 
-
-
-
-
+![](image/TriggerQ3.png)
 
 
 ----------------------------------------------------
@@ -902,3 +924,44 @@ GRANT INSERT, UPDATE ON ReceptionistSchema.Admissions TO AdminUser;
 ```sql
 REVOKE DELETE ON DoctorsSchema.Doctors TO PUBLIC;
 ```
+
+------------------------------------------------------------
+✨ <ins>**Transactions (TCL):**</ins>
+
+1• Simulate a transaction: admit a patient → insert record, update room, create billing → commit.
+2• Add rollback logic in case of failure.
+
+```sql
+BEGIN TRANSACTION;
+
+BEGIN TRY
+-- Step 1: Insert into Admissions
+INSERT INTO ReceptionistSchema.Admissions (AdmissionID, PatientID, RoomID, DateIn,DateOut )
+VALUES (3001, 5, 2, '2025-06-19', '2025-06-22');
+
+-- Step 2: Update Room availability
+UPDATE ReceptionistSchema.Rooms
+SET Available = 'No'
+WHERE RoomID = 2;
+
+-- Step 3: Insert into Billing
+INSERT INTO PatientsSchema.Billing (BillID, PatientID, TotalCost, Date, Services)
+VALUES (2001, 5, 350.00, GETDATE(), 'Admission Charges');
+
+--commit the transaction if all succeed
+    COMMIT TRANSACTION;
+
+    PRINT 'Transaction completed successfully.';
+
+END TRY
+BEGIN CATCH
+    -- rollback in case of any error
+    ROLLBACK TRANSACTION;--it show where it is stoped
+
+    PRINT 'Transaction failed. Rolling back...';
+    PRINT ERROR_MESSAGE();
+END CATCH
+```
+![](image/Transactions(TCL).png)
+
+-----------------------------------------------
