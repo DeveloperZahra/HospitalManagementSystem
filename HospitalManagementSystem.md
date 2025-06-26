@@ -875,4 +875,31 @@ GRANT SELECT ON DoctorsSchema.Appointments TO DoctorUser;
 3• GRANT INSERT, UPDATE for AdminUser on all tables.
 
 
+```sql
+--SystemSchema
+GRANT INSERT, UPDATE ON SystemSchema.Staff TO AdminUser;
+GRANT INSERT, UPDATE ON SystemSchema.Users TO AdminUser;
+GRANT INSERT, UPDATE ON SystemSchema.Departments TO AdminUser;
+
+-- DoctorsSchema
+GRANT INSERT, UPDATE ON DoctorsSchema.Doctors TO AdminUser;
+GRANT INSERT, UPDATE ON DoctorsSchema.Appointments TO AdminUser;
+GRANT INSERT, UPDATE ON DoctorsSchema.MedicalRecords TO AdminUser;
+
+--ReceptionistSchema
+GRANT INSERT, UPDATE ON PatientsSchema.Patients TO AdminUser;
+GRANT INSERT, UPDATE ON PatientsSchema.Billing TO AdminUser;
+
+
+--PatientsSchema
+GRANT INSERT, UPDATE ON ReceptionistSchema.Rooms TO AdminUser;
+GRANT INSERT, UPDATE ON ReceptionistSchema.Admissions TO AdminUser;
+```
+
+
+
+
+
+
+
 4• REVOKE DELETE for Doctors.
