@@ -897,9 +897,8 @@ GRANT INSERT, UPDATE ON ReceptionistSchema.Admissions TO AdminUser;
 ```
 
 
-
-
-
-
-
 4• REVOKE DELETE for Doctors.
+
+```sql
+REVOKE DELETE ON DoctorsSchema.Doctors TO PUBLIC;
+```
