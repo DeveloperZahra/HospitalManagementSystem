@@ -9,10 +9,15 @@ USE HospitalManagementSystem
 
 CREATE SCHEMA SystemSchema;
 GO
-ALTER SCHEMA SystemSchema TRANSFER Staff;
-ALTER SCHEMA SystemSchema TRANSFER Users;
+ALTER SCHEMA SystemSchema TRANSFER HospitalSchema.Staff;
+ALTER SCHEMA SystemSchema TRANSFER HospitalSchema.Users;
 ALTER SCHEMA SystemSchema TRANSFER Departments;
 
+SELECT TABLE_SCHEMA, TABLE_NAME
+FROM INFORMATION_SCHEMA.TABLES
+WHERE TABLE_NAME IN ('Staff', 'Users', 'Departments');
+
+DROP SCHEMA HospitalSchema;
 
 -- SCHEMA: DoctorsSchema
 CREATE SCHEMA DoctorsSchema;

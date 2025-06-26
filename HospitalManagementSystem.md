@@ -781,16 +781,58 @@ ORDER BY Date DESC;
 
 
 
-
-
-
-
-
 2. Before delete on Patients → prevent deletion if pending bills exist.
 
+```sql
+CREATE TRIGGER trg_PreventDeletePatientWithBill
+ON PatientsSchema.Patients
+INSTEAD OF DELETE
+AS
+BEGIN
+IF EXISTS (
+SELECT 1 FROM PatientsSchema.Billing B
+WHERE B.PatientID IN (SELECT PatientID FROM deleted)
+)
+BEGIN
+RAISERROR ('Cannot delete patient with existing billing records.', 16, 1);
+ROLLBACK;
+END
+ELSE
+BEGIN
+DELETE FROM PatientsSchema.Patients
+WHERE PatientID IN (SELECT PatientID FROM deleted);
+END
+END;
+GO
 
 
+SELECT DISTINCT P.PatientID, P.P_FirstName, P.P_LastName
+FROM PatientsSchema.Patients P
+JOIN PatientsSchema.Billing B ON P.PatientID = B.PatientID;
+```
+```sql
+--Patient deletion 
+DELETE FROM PatientsSchema.Patients
+WHERE PatientID = 1;
+```
+![](image/TriggerQ2.png)
 
+This means that the trigger is working successfully and preventing the deletion of patients with bills.
+
+```sql
+-- Admitting a new patient without bill
+INSERT INTO PatientsSchema.Patients (PatientID, P_FirstName, P_LastName, DOB, Gender, P_PhoneNumber)
+VALUES (999, 'Test', 'Patient', '1990-01-01', 'Male', '1234567890');
+```
+![](image/TriggerQ2Test.png)
+
+```sql
+--Delete the patient 
+DELETE FROM PatientsSchema.Patients
+WHERE PatientID = 999;
+```
+
+![](image/TriggerQ2Test2.png)
 
 
 
