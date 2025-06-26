@@ -100,7 +100,11 @@ INSERT INTO Appointments (AppointmentID, PatientID, DoctorID, AppointmentDate, S
 (19, 19, 19, '2025-06-24 18:00:00', 'Confirmed'), (20, 20, 20, '2025-06-24 18:30:00', 'Pending'),
 (21, 21, 21, '2025-06-24 19:00:00', 'Confirmed');
 
-SELECT * FROM Appointments
+--INSERT INTO DoctorsSchema.Appointments (AppointmentID, PatientID, DoctorID, AppointmentDate, Status) VALUES
+--(22, 1, 1, '2025-06-27 09:00:00', 'Confirmed');
+
+SELECT * FROM DoctorsSchema.Appointments
+
 
 --====TO INSERT DATA FOR Admissions TABLE=====
 

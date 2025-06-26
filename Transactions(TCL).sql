@@ -1,11 +1,11 @@
---=====USE THE DATABASE=====
+﻿--=====USE THE DATABASE=====
 
 USE HospitalManagementSystem 
 
 
 --========Transactions (TCL)============
---1� Simulate a transaction: admit a patient ? insert record, update room, create billing ? commit.
---2� Add rollback logic in case of failure.
+--1• Simulate a transaction: admit a patient → insert record, update room, create billing → commit.
+--2• Add rollback logic in case of failure.
 
 BEGIN TRANSACTION;
 
