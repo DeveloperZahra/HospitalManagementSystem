@@ -1187,3 +1187,10 @@ BEGIN
     WHERE CAST(A.AppointmentDate AS DATE) = CAST(GETDATE() AS DATE); -- Today's appointments only
 END;
 ```
+❖ Step 3: Create the SQL Server Agent Job to Handle the Stored Procedure
+
+![](image/Option2.1.png)
+
+![](image/Option2.2.png)
+
+![](image/Option2.3.png)
