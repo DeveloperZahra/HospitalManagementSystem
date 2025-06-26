@@ -863,10 +863,12 @@ CREATE ROLE AdminUser;
 
 
 
-
-
-
 2• GRANT SELECT for DoctorUser on Patients and Appointments only.
+
+```sql
+GRANT SELECT ON PatientsSchema.Patients TO DoctorUser;
+GRANT SELECT ON DoctorsSchema.Appointments TO DoctorUser;
+```
 
 
 
